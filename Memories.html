@@ -1,19 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sri LakshmiNarasimar Temple</title>
     <link rel="icon" type="image/png" href="Title.png">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+        // Load the Google API client library
+        function loadClient() {
+            gapi.load('client', initializeClient);
+        }
+
+        function initializeClient() {
+            gapi.client.init({
+                apiKey: 'AIzaSyC1P0ETn3zKPFjvcWlf2mLyCpKUZQw3K1I',
+                discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"]
+            }).then(() => {
+                fetchImages();
+            });
+        }
+
+        function fetchImages() {
+            const folderId = '1n4ZZLlsp5D1VjynBHwL5VICe5BV1fToN'; // Replace with your folder ID
+            gapi.client.drive.files.list({
+                'q': `'${folderId}' in parents and mimeType contains 'image/'`,
+                'fields': 'files(id, name, mimeType, webViewLink, webContentLink)'
+            }).then(response => {
+                const files = response.result.files;
+                const gallery = document.querySelector('.gallery');
+                gallery.innerHTML = ''; // Clear existing images
+
+                files.forEach(file => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = `https://www.googleapis.com/drive/v3/files/${file.id}?alt=media&key=AIzaSyAJkatSYfAsPNHsFRLSNFvvrjYyIxu-Iuo`;
+                    imgElement.alt = file.name;
+                    imgElement.classList.add('gallery-item');
+                    imgElement.onclick = () => openModal(imgElement.src);
+                    gallery.appendChild(imgElement);
+                });
+            }).catch(error => {
+                console.error('Error fetching images:', error);
+            });
+        }
+
+        function openModal(src) {
+            const modal = document.querySelector('.modal');
+            const modalImg = document.querySelector('#modalImg');
+            modal.style.display = "block";
+            modalImg.src = src;
+        }
+
+        function closeModal() {
+            const modal = document.querySelector('.modal');
+            modal.style.display = "none";
+        }
+    </script>
 </head>
-<body>
+
+<body onload="loadClient()">
     <header>
         <h1>Sri LakshmiNarasimar Temple</h1>
     </header>
     <nav>
         <a href="index.html">Home</a>
         <a href="Memories.html" class="active">Memories</a>
+        <a href="UpcomingEvents.html">Upcoming Events</a>
         <a href="AboutUs.html">About Us</a>
     </nav>
     <div class="container">
@@ -27,25 +81,10 @@
             </p>
         </div>
         <div class="content-box">
-            <h2>Festival Memories Gallery</h2>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="festival1.jpg" alt="Festival Celebration 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="festival2.jpg" alt="Festival Celebration 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="festival3.jpg" alt="Festival Celebration 3">
-                </div>
-                <div class="gallery-item">
-                    <img src="festival4.jpg" alt="Festival Celebration 4">
-                </div>
-                <div class="gallery-item">
-                    <img src="festival5.jpg" alt="Festival Celebration 5">
-                </div>
-                <div class="gallery-item">
-                    <img src="festival6.jpg" alt="Festival Celebration 6">
+            <h2>Festival Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery">
+                    <!-- Images will be dynamically added here -->
                 </div>
             </div>
         </div>
@@ -53,5 +92,12 @@
     <footer>
         © 2024 DevelopersKvp
     </footer>
+
+    <!-- Modal for viewing images -->
+    <div class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
 </body>
+
 </html>
