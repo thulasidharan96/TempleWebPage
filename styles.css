@@ -93,7 +93,6 @@ img:hover {
 /* Gallery Styles */
 .gallery {
     display: flex;
-    flex-direction: column; /* Display items vertically */
     overflow-x: auto; /* Enable horizontal scrolling */
     gap: 10px;
     padding: 10px;
