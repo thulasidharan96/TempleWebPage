@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate to Sri Lakshmi Narasimar Temple</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Sri Lakshmi Narasimar Temple</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="Memories.html">Memories</a>
+        <a href="UpcomingEvents.html">Upcoming Events</a>
+        <a href="Donation.html" class="active">Donation</a>
+        <a href="AboutUs.html">About Us</a>
+    </nav>
+
+    <div id="donationSection" class="container">
+        <div class="content-box">
+            <h2>Donate to Sri Lakshmi Narasimar Temple</h2>
+            <p>Your generous donations help us maintain the temple and organize events for the community. Thank you for your support!</p>
+            <button id="donateButton">Donate Now</button>
+        </div>
+    </div>
+
+    <div id="donationDetails" class="container" style="display: none;">
+        <div class="Account">
+            <h2>Donation Details</h2>
+            <img src="Image (1).jpg" alt="QR Code" class="qr-code">
+            <p>Account Name: Sri Lakshmi Narasimar Temple</p>
+            <p>Account Number: 1234567890</p>
+            <p>IFSC Code: ABCD0123456</p>
+            <p>Bank Name: Example Bank</p>
+            <button href="upi://pay?pa=6381237542@ptsbi&pn=Thulasidharan&cu=INR" id="__UPI_BUTTON__">CLICK TO PAY</button>
+        </div>
+    </div>
+
+    <audio id="donationSound">
+        <source src="indian-temple-bell-68150 (mp3cut.net).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        var donationSection = document.getElementById("donationSection");
+        var donationDetails = document.getElementById("donationDetails");
+        var donateButton = document.getElementById("donateButton");
+        var backButton = document.getElementById("backButton");
+        var sound = document.getElementById("donationSound");
+
+        donateButton.onclick = function() {
+            sound.play();
+            setTimeout(function() {
+                donationSection.style.display = "none";
+                donationDetails.style.display = "block";
+            }, 1000);
+        }
+
+        backButton.onclick = function() {
+            donationDetails.style.display = "none";
+            donationSection.style.display = "block";
+        }
+    </script>
+    <footer>
+        © 2024 DevelopersKvp
+    </footer>
+</body>
+</html>
+

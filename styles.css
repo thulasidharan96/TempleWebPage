@@ -1,15 +1,14 @@
-
 /* General Styles */
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(to right, #f5f5f5, #e0e0e0); 
+    background: linear-gradient(to right, #f5f5f5, #e0e0e0);
     color: #333;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background: linear-gradient(to right, #FFBF00, #FF7F00); 
+    background: linear-gradient(to right, #FFBF00, #FF7F00);
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -18,8 +17,8 @@ header {
 
 header h1 {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.5em;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
 }
 
 nav {
@@ -53,7 +52,7 @@ nav a:hover, nav a.active {
     margin: 20px 0;
     padding: 20px;
     border: 1px solid #ddd;
-    border-radius: 12px; 
+    border-radius: 12px;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -93,26 +92,23 @@ img:hover {
 /* Gallery Styles */
 .gallery {
     display: flex;
-    flex-direction: column; /* Change to vertical layout */
-    overflow-x: auto; /* Enable horizontal scrolling */
-    gap: 10px;
+    flex-direction: column;
+    gap: 20px;
     padding: 10px;
-    scroll-behavior: smooth; /* Smooth scrolling */
-    white-space: nowrap; /* Prevents wrapping to the next line */
+    align-items: center;
+    overflow-y: scroll;
+    height: 80vh;
+    scrollbar-width: thin;
+    scrollbar-color: #FFBF00 #e0e0e0;
 }
 
 .gallery-item {
-    flex: 0 0 auto; /* Prevents shrinking and growing */
-    width: 200px;
-    height: fit-content; /* Set a fixed width for each item */
-    margin-left: auto;
+    width: 80%;
+    height: auto;
+    max-width: 600px;
     position: relative;
     cursor: pointer;
     transition: transform 0.3s ease;
-}
-
-.gallery-item:last-child {
-    margin-right: 0; /* Removes margin on the last item */
 }
 
 .gallery-img {
@@ -123,13 +119,13 @@ img:hover {
 }
 
 .gallery-img:hover {
-    transform: scale(1.05); 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Enhancing the horizontal scroll experience */
+/* Scrollbar Customization */
 .gallery::-webkit-scrollbar {
-    height: 8px;
+    width: 8px;
 }
 
 .gallery::-webkit-scrollbar-thumb {
@@ -142,10 +138,10 @@ img:hover {
     border-radius: 4px;
 }
 
-/* Modal Styles for Lightbox */
+/* Modal Styles */
 .modal {
-    display: none; 
-    position: fixed; 
+    display: none;
+    position: fixed;
     z-index: 1000;
     left: 0;
     top: 0;
@@ -183,26 +179,77 @@ img:hover {
     transition: color 0.3s ease;
 }
 
+.close:hover {
+    color: #FFBF00;
+}
+
 iframe {
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     transform: scale(1.05); 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: auto;
-    background-color: #ceb83f;
+    width: 80%;
+    height: 200px;
 }
 
-.close:hover {
-    color: #FFBF00;
+button {
+    background: linear-gradient(to right, #FFBF00, #FF7F00);
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
+
+button:hover {
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.Account {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.Account h2{
+    color: #FF7F00;
+    font-size: 1.8em;
+    font-family: 'Playfair Display', serif;
+}
+
+.qr-code {
+    display: block;
+    margin: 20px auto;
+    width: 80%;
+    height: 80%;
+}
+
 
 /* Footer Styles */
 footer {
     background: #333;
     color: #fff;
     text-align: center;
-    padding: 20px 0;
-    position: relative;
+    padding: 15px 0;
+    position: fixed;
     bottom: 0;
     width: 100%;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
@@ -224,9 +271,13 @@ footer p {
     }
 
     .gallery-item {
-        flex: 1 1 calc(50% - 20px);
-        max-width: calc(50% - 20px);
+        width: 100%;
     }
+
+    iframe {
+        max-width: 80%;
+    }
+  
 }
 
 @media (max-width: 480px) {
@@ -240,7 +291,7 @@ footer p {
     }
 
     .gallery-item {
-        flex: 1 1 100%;
-        max-width: 100%;
+        width: 100%;
     }
 }
+
