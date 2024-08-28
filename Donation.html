@@ -63,6 +63,14 @@
             donationDetails.style.display = "none";
             donationSection.style.display = "block";
         }
+                // Function to handle UPI button click
+        function openUPIApp() {
+            const upiLink = document.getElementById('upiButton').getAttribute('href');
+            window.location.href = upiLink;
+        }
+
+        // Attach the function to the button click event
+        document.getElementById('upiButton').addEventListener('click', openUPIApp);
     </script>
     <footer>
         © 2024 DevelopersKvp
